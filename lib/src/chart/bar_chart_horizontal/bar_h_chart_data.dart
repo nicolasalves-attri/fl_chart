@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:fl_chart/src/chart/bar_chart_horizontal/bar_chart_helper.dart';
+import 'package:fl_chart/src/chart/bar_chart_horizontal/bar_h_chart_helper.dart';
 import 'package:fl_chart/src/extensions/color_extension.dart';
 import 'package:fl_chart/src/utils/lerp.dart';
 import 'package:fl_chart/src/utils/utils.dart';
@@ -865,15 +865,15 @@ class BarHTouchResponse extends BaseTouchResponse {
 class BarHTouchedSpot extends TouchedSpot with EquatableMixin {
   /// When touch happens, a [BarHTouchedSpot] returns as a output,
   /// it tells you where the touch happened.
-  /// [touchedBarHGroup], and [touchedBarHGroupIndex] tell you in which group touch happened,
+  /// [touchedBarGroup], and [touchedBarGroupIndex] tell you in which group touch happened,
   /// [touchedRodData], and [touchedRodDataIndex] tell you in which rod touch happened,
   /// [touchedStackItem], and [touchedStackItemIndex] tell you in which rod stack touch happened
   /// ([touchedStackItemIndex] means nothing found).
   /// You can also have the touched x and y in the chart as a [FlSpot] using [spot] value,
   /// and you can have the local touch coordinates on the screen as a [Offset] using [offset] value.
   BarHTouchedSpot(
-    this.touchedBarHGroup,
-    this.touchedBarHGroupIndex,
+    this.touchedBarGroup,
+    this.touchedBarGroupIndex,
     this.touchedRodData,
     this.touchedRodDataIndex,
     this.touchedStackItem,
@@ -881,8 +881,8 @@ class BarHTouchedSpot extends TouchedSpot with EquatableMixin {
     FlSpot spot,
     Offset offset,
   ) : super(spot, offset);
-  final BarHChartGroupData touchedBarHGroup;
-  final int touchedBarHGroupIndex;
+  final BarHChartGroupData touchedBarGroup;
+  final int touchedBarGroupIndex;
 
   final BarHChartRodData touchedRodData;
   final int touchedRodDataIndex;
@@ -896,8 +896,8 @@ class BarHTouchedSpot extends TouchedSpot with EquatableMixin {
   /// Used for equality check, see [EquatableMixin].
   @override
   List<Object?> get props => [
-        touchedBarHGroup,
-        touchedBarHGroupIndex,
+        touchedBarGroup,
+        touchedBarGroupIndex,
         touchedRodData,
         touchedRodDataIndex,
         touchedStackItem,

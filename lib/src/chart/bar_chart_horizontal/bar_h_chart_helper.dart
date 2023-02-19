@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:fl_chart/src/chart/bar_chart_horizontal/bar_chart_data.dart';
+import 'package:fl_chart/src/chart/bar_chart_horizontal/bar_h_chart_data.dart';
 import 'package:fl_chart/src/utils/list_wrapper.dart';
 
 /// Contains anything that helps BarHChart works
