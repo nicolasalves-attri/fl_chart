@@ -1,22 +1,22 @@
 import 'package:equatable/equatable.dart';
-import 'package:fl_chart/src/chart/bar_chart_horizontal/bar_chart_data.dart';
+import 'package:fl_chart/src/chart/bar_chart/bar_chart_data.dart';
 import 'package:fl_chart/src/utils/list_wrapper.dart';
 
-/// Contains anything that helps BarHChart works
-class BarHChartHelper {
-  /// Contains List of cached results, base on [List<BarHChartGroupData>]
+/// Contains anything that helps BarChart works
+class BarChartHelper {
+  /// Contains List of cached results, base on [List<BarChartGroupData>]
   ///
   /// We use it to prevent redundant calculations
-  static final Map<ListWrapper<BarHChartGroupData>, BarHChartMinMaxAxisValues>
+  static final Map<ListWrapper<BarChartGroupData>, BarChartMinMaxAxisValues>
       _cachedResults = {};
 
   /// Calculates minY, and maxY based on [barGroups],
   /// returns cached values, to prevent redundant calculations.
-  static BarHChartMinMaxAxisValues calculateMaxAxisValues(
-    List<BarHChartGroupData> barGroups,
+  static BarChartMinMaxAxisValues calculateMaxAxisValues(
+    List<BarChartGroupData> barGroups,
   ) {
     if (barGroups.isEmpty) {
-      return BarHChartMinMaxAxisValues(0, 0);
+      return BarChartMinMaxAxisValues(0, 0);
     }
 
     final listWrapper = barGroups.toWrapperClass();
@@ -25,12 +25,12 @@ class BarHChartHelper {
       return _cachedResults[listWrapper]!.copyWith(readFromCache: true);
     }
 
-    final BarHChartGroupData barGroup;
+    final BarChartGroupData barGroup;
     try {
       barGroup = barGroups.firstWhere((element) => element.barRods.isNotEmpty);
     } catch (e) {
       // There is no barChartGroupData with at least one barRod
-      return BarHChartMinMaxAxisValues(0, 0);
+      return BarChartMinMaxAxisValues(0, 0);
     }
 
     var maxY = barGroup.barRods[0].toY;
@@ -59,15 +59,15 @@ class BarHChartHelper {
       }
     }
 
-    final result = BarHChartMinMaxAxisValues(minY, maxY);
+    final result = BarChartMinMaxAxisValues(minY, maxY);
     _cachedResults[listWrapper] = result;
     return result;
   }
 }
 
-/// Holds minY, and maxY for use in [BarHChartData]
-class BarHChartMinMaxAxisValues with EquatableMixin {
-  BarHChartMinMaxAxisValues(this.minY, this.maxY, {this.readFromCache = false});
+/// Holds minY, and maxY for use in [BarChartData]
+class BarChartMinMaxAxisValues with EquatableMixin {
+  BarChartMinMaxAxisValues(this.minY, this.maxY, {this.readFromCache = false});
   final double minY;
   final double maxY;
   final bool readFromCache;
@@ -75,12 +75,12 @@ class BarHChartMinMaxAxisValues with EquatableMixin {
   @override
   List<Object?> get props => [minY, maxY, readFromCache];
 
-  BarHChartMinMaxAxisValues copyWith({
+  BarChartMinMaxAxisValues copyWith({
     double? minY,
     double? maxY,
     bool? readFromCache,
   }) {
-    return BarHChartMinMaxAxisValues(
+    return BarChartMinMaxAxisValues(
       minY ?? this.minY,
       maxY ?? this.maxY,
       readFromCache: readFromCache ?? this.readFromCache,
