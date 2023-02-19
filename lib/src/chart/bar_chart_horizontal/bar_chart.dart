@@ -1,5 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:fl_chart/src/chart/bar_chart/bar_chart_renderer.dart';
+import 'package:fl_chart/src/chart/bar_chart_horizontal/bar_chart_renderer.dart';
 import 'package:fl_chart/src/chart/base/axis_chart/axis_chart_scaffold_widget.dart';
 import 'package:flutter/cupertino.dart';
 

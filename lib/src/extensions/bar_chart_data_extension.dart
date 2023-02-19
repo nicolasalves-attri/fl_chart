@@ -1,4 +1,4 @@
-import 'package:fl_chart/src/chart/bar_chart/bar_chart_data.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 extension BarChartDataExtension on BarChartData {
   List<double> calculateGroupsX(double viewWidth) {
