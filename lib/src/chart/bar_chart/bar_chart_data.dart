@@ -10,11 +10,15 @@ import 'package:fl_chart/src/utils/lerp.dart';
 import 'package:fl_chart/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
+abstract class BarChartBase {}
+
 /// [BarChart] needs this class to render itself.
 ///
 /// It holds data needed to draw a bar chart,
 /// including bar lines, colors, spaces, touches, ...
-class BarChartData extends AxisChartData with EquatableMixin {
+class BarChartData extends AxisChartData
+    with EquatableMixin
+    implements BarChartBase {
   /// [BarChart] draws some [barGroups] and aligns them using [alignment],
   /// if [alignment] is [BarChartAlignment.center], you can define [groupsSpace]
   /// to apply space between them.

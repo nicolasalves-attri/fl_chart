@@ -380,6 +380,16 @@ abstract class AxisChartPainter<D extends AxisChartData>
     return ((spotX - data.minX) / deltaX) * viewSize.width;
   }
 
+  double getPixelXBars(double spotX, Size viewSize, PaintHolder<D> holder) {
+    final data = holder.data;
+    final deltaX = data.maxX - data.minX;
+    if (deltaX == 0.0) {
+      return 0;
+    }
+
+    return ((spotX - data.minX) / deltaX) * viewSize.width;
+  }
+
   /// With this function we can convert our [FlSpot] y
   /// to the view base axis y.
   double getPixelY(double spotY, Size viewSize, PaintHolder<D> holder) {

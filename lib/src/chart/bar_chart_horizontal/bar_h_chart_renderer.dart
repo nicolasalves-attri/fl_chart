@@ -9,8 +9,11 @@ import 'package:flutter/cupertino.dart';
 
 /// Low level BarHChart Widget.
 class BarHChartLeaf extends LeafRenderObjectWidget {
-  const BarHChartLeaf(
-      {super.key, required this.data, required this.targetData});
+  const BarHChartLeaf({
+    super.key,
+    required this.data,
+    required this.targetData,
+  });
 
   final BarHChartData data;
   final BarHChartData targetData;

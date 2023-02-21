@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:fl_chart/src/chart/base/axis_chart/axis_chart_helper.dart';
 import 'package:fl_chart/src/chart/base/axis_chart/side_titles/side_titles_flex.dart';
 import 'package:fl_chart/src/extensions/bar_chart_data_extension.dart';
+import 'package:fl_chart/src/extensions/bar_h_chart_data_extension.dart';
 import 'package:fl_chart/src/extensions/edge_insets_extension.dart';
 import 'package:fl_chart/src/extensions/fl_border_data_extension.dart';
 import 'package:fl_chart/src/extensions/fl_titles_data_extension.dart';
@@ -117,7 +118,10 @@ class SideTitlesWidget extends StatelessWidget {
           axisViewSize,
           axisMax - axisMin,
         );
-    if (isHorizontal && axisChartData is BarChartData) {
+
+    final isBarChart = axisChartData is BarChartData;
+
+    if (isHorizontal && isBarChart) {
       final barChartData = axisChartData as BarChartData;
       if (barChartData.barGroups.isEmpty) {
         return [];
@@ -127,6 +131,19 @@ class SideTitlesWidget extends StatelessWidget {
         final index = e.key;
         final xLocation = e.value;
         final xValue = barChartData.barGroups[index].x;
+        return AxisSideTitleMetaData(xValue.toDouble(), xLocation);
+      }).toList();
+    } else if (isVertical && axisChartData is BarHChartData) {
+      final barChartData = axisChartData as BarHChartData;
+      if (barChartData.barGroups.isEmpty) {
+        return [];
+      }
+
+      final xLocations = barChartData.calculateGroupsX(axisViewSize);
+      axisPositions = xLocations.asMap().entries.map((e) {
+        final index = e.key;
+        final xLocation = e.value;
+        final xValue = barChartData.barGroups[index].y;
         return AxisSideTitleMetaData(xValue.toDouble(), xLocation);
       }).toList();
     } else {
